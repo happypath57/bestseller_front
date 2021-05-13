@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>Activate Your Warranty and get a FREE Gift</title>
+
+    <!-- Meta-Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- style CSS -->
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+	
+	
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<!-- <script type="text/javascript" src="js/script.js"></script> -->
+	
+</head>
+
+
+<body>
+
+<script type="text/javascript">
+        function login() {
+            var username = document.getElementById("username").value;
+            var email = document.getElementById("email").value;
+			var order_id = document.getElementById("order_id").value;
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: 'http://127.0.0.1:8884/send/',  
+				//  url: 'https://bestseller-alpha.herokuapp.com/email_feedback/',
+                contentType: "application/json",
+                data:JSON.stringify({
+                    "username": username,
+                    "email": email,
+					"order_id":order_id,
+					"user_id":"11111111111111111"
+					
+                }),
+                success: function (result) {
+                    console.log("data is :" + result)
+                    if (result.code == 200) {
+                        alert("提交成功");
+                    
+                    }else {
+                        alert(result.message)
+                    }
+                }
+            });
+        }
+    </script>
+
+<script type="text/javascript">
+		var btn = document.getElementById("commitIt");
+		
+	</script>
+
+    <section class="main">
+        <div class="logo text-center">
+            <h1> <a href=""> Activate Your Warranty and get a FREE Gift</a></h1>
+        </div>
+        <div class="content-w3ls text-center">
+            <!-- <img src="images/admin.png" alt="" class="img-responsive"> -->
+            <!-- <form  action="https://bestseller-alpha.herokuapp.com/email_feedback/", method="post">  -->
+			
+			<!-- <form  action="https://bestseller-alpha.herokuapp.com/email_feedback/", method="post"> -->
+                <div class="wthree-field">
+                    <input id="username" type="text"  placeholder="username" required>
+                </div>
+				
+                <div class="wthree-field">
+                    <input  id="email" type="text" placeholder="email" required>
+                </div>
+				
+				<div class="wthree-field">
+				    <input  id="order_id" type="text" placeholder="order id" required>
+				</div>
+				
+			
+				
+                <div class="wthree-field">
+                    <button onclick="login()" class="btn" id="commitIt" > Send </button>	
+                </div>
+                
+            <!-- </form> -->
+        </div>
+       <!-- <div class="copyright"> -->
+          <!--  <p>© 2020 Universe Signin Form. Made with love | Designed by <a
+                href="https://w3layouts.com" target="_blank">W3layouts</a></p> -->
+       <!-- </div> -->
+    </section>
+
+</body>
+
+
+</html>
+
+
+
