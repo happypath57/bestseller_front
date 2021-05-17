@@ -50,7 +50,7 @@
                 success: function (result) {
                     console.log("data is :" + result)
                     if (result.code == 200) {
-                        alert("提交成功");
+                        window.location.href='congratulations.html';
                     
                     }else {
                         alert(result.message)
