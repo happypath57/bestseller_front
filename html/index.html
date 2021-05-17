@@ -16,7 +16,7 @@
 	
 	
 	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 	<!-- <script type="text/javascript" src="js/script.js"></script> -->
 	
 </head>
@@ -25,21 +25,26 @@
 <body>
 
 <script type="text/javascript">
+        function getURLParameter(name) {
+				return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+			}
         function login() {
             var username = document.getElementById("username").value;
             var email = document.getElementById("email").value;
 			var order_id = document.getElementById("order_id").value;
+			var queryVal=getURLParameter('mmId');
+            console.log(queryVal);
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: 'http://127.0.0.1:8884/send/',  
-				//  url: 'https://bestseller-alpha.herokuapp.com/email_feedback/',
+                // url: 'http://127.0.0.1:8884/send/',
+                url: 'https://bestseller-alpha.herokuapp.com/email_feedback/',
                 contentType: "application/json",
                 data:JSON.stringify({
                     "username": username,
                     "email": email,
 					"order_id":order_id,
-					"user_id":"11111111111111111"
+					"user_id":queryVal,
 					
                 }),
                 success: function (result) {
